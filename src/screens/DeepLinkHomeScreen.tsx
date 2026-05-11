@@ -85,7 +85,7 @@ const DeepLinkHomeScreen: React.FC = () => {
             <User size={24} className="text-emerald-600" />
           </div>
           <div>
-            <Text variant="sub" className="text-emerald-800 opacity-70 block mb-0.5">Chào mừng quay lại,</Text>
+            <Text variant="sub" className="text-emerald-800 opacity-70 block mt-3">Chào mừng quay lại,</Text>
             <Text variant="base" weight="bold" className="text-emerald-900">
               {displayName} {displayEmail ? `(${displayEmail})` : ''}
             </Text>
