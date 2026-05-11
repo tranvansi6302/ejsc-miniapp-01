@@ -97,7 +97,7 @@ export const getRouterConfig = (): IRouterConfig => ({
   ],
   bottomTabBar: {
     items: [
-      { id: 'overview', name: 'Trang chủ', path: '/', icon: 'link' },
+      { id: 'overview', name: 'Trang chủ', path: '/', icon: 'home' },
       { id: 'api', name: 'API', path: '/api', icon: 'code' },
       { id: 'about', name: 'Giới thiệu', path: '/about', icon: 'circle-info' },
       { id: 'account', name: 'Tài khoản', path: '/account', icon: 'user' },

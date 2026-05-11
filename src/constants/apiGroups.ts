@@ -287,13 +287,13 @@ export const API_GROUPS: ApiGroup[] = [
         desc: 'Quét mã QR.',
         fn: () => apisAsync.scan(),
       },
-      {
-        id: 'bioMetrics',
-        name: 'bioMetrics',
-        desc: 'Vân tay / FaceID.',
-        params: JSON.stringify({ content: 'Xác thực' }, null, 2),
-        fn: (p) => apisAsync.bioMetrics.localAuth(p),
-      },
+      // {
+      //   id: 'bioMetrics',
+      //   name: 'bioMetrics',
+      //   desc: 'Vân tay / FaceID.',
+      //   params: JSON.stringify({ content: 'Xác thực' }, null, 2),
+      //   fn: (p) => apisAsync.bioMetrics.localAuth(p),
+      // },
       {
         id: 'makePhoneCall',
         name: 'makePhoneCall',

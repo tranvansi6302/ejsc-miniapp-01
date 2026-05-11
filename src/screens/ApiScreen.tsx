@@ -186,7 +186,7 @@ const ApiScreen: React.FC = () => {
 
   return (
     <StandardPage
-      title="Bridge Debugger Pro"
+      title="Bridge APIs"
       onRefresh={handleRefresh}
     >
       <div className="flex flex-col gap-6 p-6">
