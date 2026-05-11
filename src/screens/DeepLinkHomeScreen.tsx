@@ -73,7 +73,7 @@ const DeepLinkHomeScreen: React.FC = () => {
   return (
     <StandardPage title="Mini App 01">
       {/* Header Banner Area - Flat Look */}
-      <div className="bg-gradient-to-br from-emerald-600 to-teal-700 px-6 py-8 text-white">
+      <div className="bg-gradient-to-br from-emerald-600 to-teal-700 px-6 py-4 text-white">
         <Text variant="sub" color="white" className="opacity-90">Điều hướng deeplink qua các mini app khác</Text>
       </div>
 
@@ -92,7 +92,7 @@ const DeepLinkHomeScreen: React.FC = () => {
           </div>
         </Card>
 
-        <Card className="rounded-3xl border-none shadow-none bg-white p-6 flex flex-col gap-5">
+        <div className="rounded-3xl border-none shadow-none bg-white flex flex-col gap-5">
           <Text variant="base" weight="bold" className="text-slate-700">Chuyển đến Mini App khác</Text>
           <div className="flex flex-col gap-4">
             {apps.map(app => (
@@ -114,7 +114,7 @@ const DeepLinkHomeScreen: React.FC = () => {
               </button>
             ))}
           </div>
-        </Card>
+        </div>
 
         {lastResult && (
           <div className={`p-4 rounded-2xl border flex items-center gap-3 ${lastResult.success ? 'bg-emerald-50 border-emerald-100' : 'bg-red-50 border-red-100'}`}>
