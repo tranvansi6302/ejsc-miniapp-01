@@ -40,7 +40,8 @@ const ApiScreen: React.FC = () => {
     const initial: Record<string, string> = {};
     API_GROUPS.forEach(group => {
       group.apis.forEach(api => {
-        if (api.params) initial[api.id] = "";
+        // Tự động nạp giá trị mẫu nếu có
+        if (api.params) initial[api.id] = api.params;
       });
     });
     return initial;
