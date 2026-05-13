@@ -3,6 +3,7 @@ import { StandardPage, Text, toast, Card } from 'ejsc-ma-component';
 import { useNavigate } from 'ejsc-ma-router';
 import { ArrowLeft, MessageSquare, Sparkles, Layout, Info, ChevronRight } from 'lucide-react';
 import { PullToRefresh } from '../components/PullToRefresh';
+import { Header } from '../components/Header';
 
 const SkeletonItem = () => (
   <div className="p-5 bg-slate-50 rounded-ejsc border border-slate-100 flex flex-col gap-3 animate-pulse">
@@ -84,18 +85,13 @@ const ImmersiveTestScreen: React.FC = () => {
           <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-white" />
         </div>
 
-        {/* Header giả lập dùng Safe Area Top - Cố định (Sticky) */}
-        <div
-          className="px-6 pb-4 flex items-center gap-4 sticky top-0 z-50 transition-all duration-300"
-          style={{
-            paddingTop: 'calc(var(--ejsc-safe-top) + 12px)',
-          }}
-        >
-          <div className="flex flex-col">
-            <Text weight="bold" color="white" variant="base">BG Tràn viền</Text>
-            <Text variant="tiny" className="text-white/70">Pull to Refresh & Skeleton Loading</Text>
-          </div>
-        </div>
+        {/* Header (Immersive Sticky) */}
+        <Header 
+          title="BG Tràn viền" 
+          subtitle="Pull to Refresh & Skeleton Loading" 
+          transparent 
+          showBack 
+        />
 
         {/* Vùng nội dung */}
         <PullToRefresh onRefresh={handleRefresh}>
