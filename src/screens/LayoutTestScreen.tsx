@@ -125,21 +125,27 @@ const LayoutTestScreen: React.FC = () => {
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => {
-                  (apisAsync as any).setNavigationBar({ statusBarStyle: 'dark', frontColor: '#000000' });
-                  toast.success('Icon: Đen');
+                  (apisAsync as any).setNavigationBar({
+                    statusBarStyle: 'dark',
+                    frontColor: '#FFA500' // Màu cam
+                  });
+                  toast.success('Pin đen + Chữ cam');
                 }}
                 className="py-3.5 px-4 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-600 flex items-center justify-center gap-2 active:scale-95"
               >
-                Icon đen
+                Icon đen (-> Cam)
               </button>
               <button
                 onClick={() => {
-                  (apisAsync as any).setNavigationBar({ statusBarStyle: 'light', frontColor: '#ffffff' });
-                  toast.success('Icon: Trắng');
+                  (apisAsync as any).setNavigationBar({
+                    statusBarStyle: 'light',
+                    frontColor: '#FF0000' // Màu đỏ
+                  });
+                  toast.success('Pin trắng + Chữ đỏ');
                 }}
                 className="py-3.5 px-4 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-600 flex items-center justify-center gap-2 active:scale-95"
               >
-                Icon trắng
+                Icon trắng (Đỏ)
               </button>
             </div>
 
