@@ -99,23 +99,17 @@ const LayoutTestScreen: React.FC = () => {
 
         {/* ─── MỤC 3: ICON BACK ─── */}
         <section className="flex flex-col gap-2">
-          <Text weight="bold" variant="base" className="text-slate-700">3. Icon back</Text>
+          <Text weight="bold" variant="base" className="text-slate-700">3. Nút quay lại</Text>
           <div className="bg-white rounded-ejsc border border-slate-100 p-4 flex flex-col gap-2">
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               <button
-                onClick={() => { apisAsync.setNavigationBar({ visible: true, backIcon: 'arrow', title: 'Back: Arrow' }); toast.success('Icon: ← Arrow'); }}
+                onClick={() => { apisAsync.setNavigationBar({ visible: true, backIcon: 'arrow', title: 'Hiện nút Back' }); toast.success('Đã hiện nút Back'); }}
                 className="py-3 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-700 active:scale-95 transition-all"
               >
-                ← Arrow
+                Hiện icon
               </button>
               <button
-                onClick={() => { apisAsync.setNavigationBar({ visible: true, backIcon: 'close', title: 'Back: Close' }); toast.success('Icon: ✕ Close'); }}
-                className="py-3 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-700 active:scale-95 transition-all"
-              >
-                ✕ Close
-              </button>
-              <button
-                onClick={() => { apisAsync.setNavigationBar({ visible: true, backIcon: 'none', title: 'Back: None' }); toast.success('Icon: (ẩn)'); }}
+                onClick={() => { apisAsync.setNavigationBar({ visible: true, backIcon: 'none', title: 'Ẩn nút Back' }); toast.success('Đã ẩn nút Back'); }}
                 className="py-3 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-700 active:scale-95 transition-all"
               >
                 Ẩn icon
