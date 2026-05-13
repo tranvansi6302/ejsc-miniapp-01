@@ -8,6 +8,7 @@ import { useNavigate } from 'ejsc-ma-router';
 import { CheckCircle2, ChevronsRight, ExternalLink, Layout, User, XCircle, Zap } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { PullToRefresh } from '../components/PullToRefresh';
+import { Header } from '../components/Header';
 
 const DeepLinkHomeScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -82,97 +83,113 @@ const DeepLinkHomeScreen: React.FC = () => {
   ];
 
   return (
-    <StandardPage title="Mini App 01">
-      <PullToRefresh onRefresh={handleRefresh}>
-        <div className="min-h-screen">
-          {/* Header Banner Area - Flat Look */}
-          <div className="bg-gradient-to-br flex items-center gap-2 from-emerald-600 to-teal-700 px-6 py-4 text-white">
-            <ChevronsRight size={18} className="text-white" />
-            <Text variant="sub" color="white" className="opacity-90">Mini app nội bộ cho development/testing</Text>
-          </div>
-
-          {/* Content Area - Increased Spacing from Header */}
-          <div className="px-4 mt-6 pb-10 flex flex-col gap-6">
-            {/* Welcome Section */}
-            <Card className="rounded-3xl border-none bg-emerald-50 p-6 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
-                <User size={24} className="text-emerald-600" />
-              </div>
-              <div>
-                <Text variant="sub" className="text-emerald-800 opacity-70 block mt-3">Chào mừng quay lại,</Text>
-                <Text variant="base" weight="bold" className="text-emerald-900">
-                  {displayName} {displayEmail ? `(${displayEmail})` : ''}
-                </Text>
-              </div>
-            </Card>
-
-            {/* Mini App Section */}
-            <div className="flex flex-col gap-4">
-              <Text variant="base" weight="bold" className="text-slate-700">Mini App nổi bật</Text>
-              <div className="grid grid-cols-2 gap-3">
-                {apps.filter(app => !app.isSelf).map(app => (
-                  <button
-                    key={app.id}
-                    onClick={() => openApp(app.id, app.name)}
-                    className="flex items-center gap-4 p-4 rounded-2xl border border-slate-100 hover:bg-slate-50 transition-all active:scale-95 bg-white"
-                  >
-                    <div className={`w-12 h-12 shrink-0 rounded-2xl ${app.color} flex items-center justify-center text-white font-black text-xl border border-white/20`}>
-                      {app.num || '1'}
-                    </div>
-                    <div className="flex-1 text-left">
-                      <Text variant="base" weight="bold" className="text-slate-800">{app.name}</Text>
-                      <Text variant="sub" className="text-slate-500 text-[11px]">Nhấn để mở</Text>
-                    </div>
-                    <ExternalLink size={16} className="text-slate-400 shrink-0" />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Framework Tools Section */}
-            <div className="rounded-3xl border-none bg-white flex flex-col gap-4">
-              <Text variant="base" weight="bold" className="text-slate-700">Kiểm thử (EJSC)</Text>
-
-              <button
-                onClick={() => navigate('/layout-test')}
-                className="w-full flex items-center gap-4 p-4 rounded-2xl border border-slate-100 active:bg-slate-50 transition-all"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center text-white">
-                  <Layout size={24} />
-                </div>
-                <div className="flex-1 text-left">
-                  <Text variant="base" weight="bold">Kiểm tra Header native</Text>
-                  <Text variant="sub" className="text-slate-500 line-clamp-1 text-[11px]">Thử nghiệm AppBar, màu sắc, thanh trạng thái</Text>
-                </div>
-                <ExternalLink size={16} className="text-slate-400" />
-              </button>
-
-              <button
-                onClick={() => navigate('/test-header')}
-                className="w-full flex items-center gap-4 p-4 rounded-2xl border border-slate-100 active:bg-slate-50 transition-all"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white">
-                  <Zap size={24} />
-                </div>
-                <div className="flex-1 text-left">
-                  <Text variant="base" weight="bold">Biến CSS safe area</Text>
-                  <Text variant="sub" className="text-slate-500 line-clamp-1 text-[11px]">Xem toàn bộ 17 biến --ejsc-* từ Native</Text>
-                </div>
-                <ExternalLink size={16} className="text-slate-400" />
-              </button>
-            </div>
-
-            {lastResult && (
-              <div className={`p-4 rounded-2xl border flex items-center gap-3 ${lastResult.success ? 'bg-emerald-50 border-emerald-100' : 'bg-red-50 border-red-100'}`}>
-                {lastResult.success ? <CheckCircle2 size={20} className="text-emerald-600" /> : <XCircle size={20} className="text-red-500" />}
-                <Text variant="sub" className={lastResult.success ? 'text-emerald-700' : 'text-red-600'}>
-                  {lastResult.success ? `✅ Mở ${lastResult.label} thành công` : `❌ Lỗi mở ${lastResult.label}`}
-                </Text>
-              </div>
-            )}
-          </div>
+    <StandardPage hideAppBar>
+      <div className="relative bg-white min-h-screen flex flex-col">
+        {/* Landscape Banner Background (Immersive Style) */}
+        <div className="absolute top-0 left-0 right-0 h-[260px] z-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1064&auto=format&fit=crop"
+            className="w-full h-full object-cover"
+            alt="Header Background"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-white" />
         </div>
-      </PullToRefresh>
+
+        <Header title="Mini App 01" transparent />
+
+        <PullToRefresh onRefresh={handleRefresh}>
+          <div className="relative z-10 flex flex-col">
+            {/* Header Banner Content Area - Immersive */}
+            <div className="px-6 py-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white">
+                <ChevronsRight size={14} className="opacity-80" />
+                <Text className="text-white" variant="base">Mini app nội bộ cho development/testing</Text>
+              </div>
+            </div>
+
+            {/* Content Area - Increased Spacing from Header */}
+            <div className="px-4 mt-6 pb-10 flex flex-col gap-6">
+              {/* Welcome Section */}
+              <Card className="rounded-3xl border-none bg-emerald-50 p-6 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
+                  <User size={24} className="text-emerald-600" />
+                </div>
+                <div>
+                  <Text variant="sub" className="text-emerald-800 opacity-70 block mt-3">Chào mừng quay lại,</Text>
+                  <Text variant="base" weight="bold" className="text-emerald-900">
+                    {displayName} {displayEmail ? `(${displayEmail})` : ''}
+                  </Text>
+                </div>
+              </Card>
+
+              {/* Mini App Section */}
+              <div className="flex flex-col gap-4">
+                <Text variant="base" weight="bold" className="text-slate-700">Mini App nổi bật</Text>
+                <div className="grid grid-cols-2 gap-3">
+                  {apps.filter(app => !app.isSelf).map(app => (
+                    <button
+                      key={app.id}
+                      onClick={() => openApp(app.id, app.name)}
+                      className="flex items-center gap-4 p-4 rounded-2xl border border-slate-100 hover:bg-slate-50 transition-all active:scale-95 bg-white"
+                    >
+                      <div className={`w-12 h-12 shrink-0 rounded-2xl ${app.color} flex items-center justify-center text-white font-black text-xl border border-white/20`}>
+                        {app.num || '1'}
+                      </div>
+                      <div className="flex-1 text-left">
+                        <Text variant="base" weight="bold" className="text-slate-800">{app.name}</Text>
+                        <Text variant="sub" className="text-slate-500 text-[11px]">Nhấn để mở</Text>
+                      </div>
+                      <ExternalLink size={16} className="text-slate-400 shrink-0" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Framework Tools Section */}
+              <div className="rounded-3xl border-none bg-white flex flex-col gap-4">
+                <Text variant="base" weight="bold" className="text-slate-700">Kiểm thử (EJSC)</Text>
+
+                <button
+                  onClick={() => navigate('/layout-test')}
+                  className="w-full flex items-center gap-4 p-4 rounded-2xl border border-slate-100 active:bg-slate-50 transition-all"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center text-white">
+                    <Layout size={24} />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <Text variant="base" weight="bold">Kiểm tra Header native</Text>
+                    <Text variant="sub" className="text-slate-500 line-clamp-1 text-[11px]">Thử nghiệm AppBar, màu sắc, thanh trạng thái</Text>
+                  </div>
+                  <ExternalLink size={16} className="text-slate-400" />
+                </button>
+
+                <button
+                  onClick={() => navigate('/test-header')}
+                  className="w-full flex items-center gap-4 p-4 rounded-2xl border border-slate-100 active:bg-slate-50 transition-all"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white">
+                    <Zap size={24} />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <Text variant="base" weight="bold">Biến CSS safe area</Text>
+                    <Text variant="sub" className="text-slate-500 line-clamp-1 text-[11px]">Xem toàn bộ 17 biến --ejsc-* từ Native</Text>
+                  </div>
+                  <ExternalLink size={16} className="text-slate-400" />
+                </button>
+              </div>
+
+              {lastResult && (
+                <div className={`p-4 rounded-2xl border flex items-center gap-3 ${lastResult.success ? 'bg-emerald-50 border-emerald-100' : 'bg-red-50 border-red-100'}`}>
+                  {lastResult.success ? <CheckCircle2 size={20} className="text-emerald-600" /> : <XCircle size={20} className="text-red-500" />}
+                  <Text variant="sub" className={lastResult.success ? 'text-emerald-700' : 'text-red-600'}>
+                    {lastResult.success ? `✅ Mở ${lastResult.label} thành công` : `❌ Lỗi mở ${lastResult.label}`}
+                  </Text>
+                </div>
+              )}
+            </div>
+          </div>
+        </PullToRefresh>
+      </div>
     </StandardPage>
   );
 };

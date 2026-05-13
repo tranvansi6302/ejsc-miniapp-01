@@ -91,12 +91,6 @@ const ImmersiveTestScreen: React.FC = () => {
             paddingTop: 'calc(var(--ejsc-safe-top) + 12px)',
           }}
         >
-          <button
-            onClick={() => navigate(-1)}
-            className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center active:scale-90 transition-transform text-white border border-white/20"
-          >
-            <ArrowLeft size={18} />
-          </button>
           <div className="flex flex-col">
             <Text weight="bold" color="white" variant="base">BG Tràn viền</Text>
             <Text variant="tiny" className="text-white/70">Pull to Refresh & Skeleton Loading</Text>

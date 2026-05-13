@@ -56,21 +56,20 @@ const HeaderTestScreen: React.FC = () => {
 
   return (
     <StandardPage hideAppBar contentClassName="bg-[#F8FAFC]">
-      <div className="px-6 pt-6  flex flex-col gap-6 pb-40" style={{ paddingTop: 'calc(var(--ejsc-safe-top) + 16px)' }}>
-
-        {/* Header Title with Back Button */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => navigate(-1)}
-            className="w-10 h-10 rounded-full bg-white border border-slate-100 flex items-center justify-center active:scale-90 transition-transform text-slate-600"
-          >
-            <ArrowLeft size={20} />
-          </button>
-          <div className="flex flex-col gap-0.5">
-            <Text variant="h3" weight="bold" className="text-slate-800">Biến CSS safe area</Text>
-            <Text variant="sub" className="text-slate-500">Toàn bộ 17 biến --ejsc-* từ Native</Text>
-          </div>
+      <div className="relative min-h-screen flex flex-col">
+        {/* Landscape Banner Background (Immersive Style) */}
+        <div className="absolute top-0 left-0 right-0 h-[260px] z-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1064&auto=format&fit=crop"
+            className="w-full h-full object-cover"
+            alt="Header Background"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-[#F8FAFC]" />
         </div>
+
+        <Header title="Biến CSS safe area" subtitle="Toàn bộ 17 biến --ejsc-* từ Native" transparent />
+        
+        <div className="relative z-10 px-6 flex flex-col gap-6 pb-40">
 
         {/* Environment Badge */}
         <div className={`flex items-center gap-3 px-4 py-3.5 rounded-ejsc border ${isRealDevice ? 'bg-emerald-50 border-emerald-100' : 'bg-amber-50 border-amber-100'}`}>

@@ -50,30 +50,23 @@ const HomeScreen: React.FC = () => {
       className="!bg-[#f4f6fb] !px-0 !pt-0"
     >
       <div className="relative bg-white min-h-screen">
-        {/* Landscape Banner Background */}
-        <div className="absolute inset-x-0 top-0 h-[400px]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://plus.unsplash.com/premium_vector-1697729782149-e53d522cb596?q=80&w=1568&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-            }}
+        {/* Landscape Banner Background (Immersive Style) */}
+        <div className="absolute top-0 left-0 right-0 h-[260px] z-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1064&auto=format&fit=crop"
+            className="w-full h-full object-cover"
+            alt="Header Background"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#f4f6fb]/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-[#f4f6fb]" />
         </div>
 
-        {/* Floating Topbar */}
+        {/* Floating Topbar (Immersive Style) */}
         <div
-          className="relative z-20 px-3 flex items-center justify-between gap-1.5"
-          style={{ paddingTop: 'calc(var(--safe-top, env(safe-area-inset-top, 0px)) + 12px)' }}
+          className="relative z-20 px-4 flex items-center gap-3"
+          style={{ paddingTop: 'calc(var(--ejsc-safe-top) + 12px)' }}
         >
-          {/* Home Icon */}
-          <div className="w-12 h-12 shrink-0 rounded-xl bg-red-600/90 backdrop-blur-md border border-red-500/40 flex items-center justify-center text-white select-none shadow-sm active:scale-95 transition-transform duration-150">
-            <HomeIcon size={20} />
-          </div>
-
-          {/* Search Bar & Region */}
-          <div className="flex-1 flex items-center justify-between gap-1 bg-white/95 backdrop-blur-md rounded-xl px-2 h-11 border border-white/40 shadow-[0_4px_16px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] min-w-0 transition-shadow">
+          {/* Search Bar (No Shadow) */}
+          <div className="flex-1 flex items-center justify-between gap-1 bg-white/80 backdrop-blur-md rounded-xl px-3 h-11 border border-white/20 min-w-0 transition-all">
             <div className="flex items-center gap-1.5 min-w-0 flex-1">
               <Search size={14} className="text-slate-400 shrink-0" />
               <input
@@ -87,17 +80,6 @@ const HomeScreen: React.FC = () => {
               <ChevronDown size={14} className="text-slate-400 shrink-0" />
             </div>
           </div>
-
-          {/* Gift Icon button */}
-          <div className="w-12 h-12 shrink-0 rounded-xl bg-red-600/90 backdrop-blur-md border border-red-500/40 flex items-center justify-center text-white select-none shadow-sm active:scale-95 transition-transform duration-150">
-            <Gift size={20} />
-          </div>
-
-          {/* Biz Button */}
-          <div className="flex items-center gap-1 shrink-0 px-2.5 h-12 rounded-xl bg-red-600/90 backdrop-blur-md border border-red-500/40 font-bold text-white select-none shadow-sm active:scale-95 transition-transform duration-150">
-            <span className="text-ejsc-base font-semibold tracking-wide">Biz</span>
-            <ChevronRight size={14} className="text-white/80" />
-          </div>
         </div>
 
         {/* Top welcome & balance bar OVER the landscape bg */}
@@ -110,7 +92,7 @@ const HomeScreen: React.FC = () => {
               </Text>
               <Coins size={18} className="text-amber-400 shrink-0 drop-shadow select-none" />
             </div>
-            <div className="flex items-center gap-1.5 bg-white/25 backdrop-blur-md border border-white/30 px-3.5 py-1.5 rounded-full select-none hover:bg-white/30 transition-colors shadow-sm">
+            <div className="flex items-center gap-1.5 bg-white/25 backdrop-blur-md border border-white/30 px-3.5 py-1.5 rounded-full select-none hover:bg-white/30 transition-colors">
               <Text variant="base" weight="bold" className="text-white">
                 1.200.000đ
               </Text>
@@ -120,10 +102,10 @@ const HomeScreen: React.FC = () => {
         </div>
 
         {/* The main white curved content section */}
-        <div className="relative z-20 bg-[#f4f6fb] px-4 pt-5 pb-8 flex flex-col gap-4 min-h-screen -mt-2 shadow-[0_-8px_30px_rgba(0,0,0,0.02)] rounded-t-[8px]">
+        <div className="relative z-20 bg-[#f4f6fb] px-4 pt-5 pb-8 flex flex-col gap-4 min-h-screen -mt-2 rounded-t-[8px]">
 
           {/* 3 mini items below User info */}
-          <div className="p-3.5 border border-slate-100/80 shadow-[0_8px_32px_rgba(15,23,42,0.03)] bg-white select-none -mt-12 z-30 relative flex flex-row items-center justify-between rounded-[8px]">
+          <div className="p-3.5 border border-slate-100/80 bg-white select-none -mt-12 z-30 relative flex flex-row items-center justify-between rounded-[8px]">
             {/* Cộng đồng */}
             <div
               className="border-r border-slate-100 px-1"
@@ -162,7 +144,7 @@ const HomeScreen: React.FC = () => {
           </div>
 
           {/* Quick Action banner card */}
-          <div className="rounded-full p-[1px] bg-gradient-to-r from-red-200/70 to-white/10 select-none shadow-[0_4px_16px_rgba(225,29,72,0.03)] hover:shadow-[0_6px_20px_rgba(225,29,72,0.05)] transition-shadow">
+          <div className="rounded-full p-[1px] bg-gradient-to-r from-red-200/70 to-white/10 select-none transition-shadow">
             <div className="rounded-full bg-gradient-to-r from-red-50/80 via-rose-50/40 to-white/95 flex items-center justify-between px-3.5 py-2.5 select-none gap-3">
               <div className="flex items-center gap-3 flex-1 min-w-0">
                 <div className="w-9 h-9 shrink-0 rounded-full bg-red-100/60 flex items-center justify-center">
@@ -173,7 +155,7 @@ const HomeScreen: React.FC = () => {
                   <Text variant="tiny" className="text-slate-500 mt-1 whitespace-nowrap">Không cần đăng nhập</Text>
                 </div>
               </div>
-              <Button size="sm" className="shrink-0 rounded-full px-4 bg-red-500 hover:bg-red-600 border-none text-white h-[2.8rem] text-[1.2rem] font-bold shadow-sm active:scale-[0.97] transition-all whitespace-nowrap">
+              <Button size="sm" className="shrink-0 rounded-full px-4 bg-red-500 hover:bg-red-600 border-none text-white h-[2.8rem] text-[1.2rem] font-bold active:scale-[0.97] transition-all whitespace-nowrap">
                 Đặt ngay
               </Button>
             </div>
@@ -190,7 +172,7 @@ const HomeScreen: React.FC = () => {
               </button>
             </div>
             {/* Grid 4 cols with internal borders matching the image exactly */}
-            <Card className="overflow-hidden rounded-[8px] bg-white border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.02)] select-none">
+            <Card className="overflow-hidden rounded-[8px] bg-white border border-slate-100 select-none">
               <div className="grid grid-cols-4 w-full">
                 {gridServices.map((item, index) => {
                   const Icon = item.icon;
@@ -203,7 +185,7 @@ const HomeScreen: React.FC = () => {
                       className={`flex flex-col items-center gap-2.5 p-4 text-center cursor-pointer active:bg-slate-50/60 transition-all ${hasRightBorder ? 'border-r border-slate-100' : ''
                         } ${hasBottomBorder ? 'border-b border-slate-100' : ''}`}
                     >
-                      <div className={`w-12 h-12 rounded-full ${item.bg} flex items-center justify-center mb-0.5 shadow-sm`}>
+                      <div className={`w-12 h-12 rounded-full ${item.bg} flex items-center justify-center mb-0.5`}>
                         <Icon size={22} className={item.color} />
                       </div>
                       <Text variant="caption" weight="normal" className="text-slate-700 text-center break-words leading-tight">{item.title}</Text>
@@ -215,7 +197,7 @@ const HomeScreen: React.FC = () => {
           </div>
 
           {/* Coming Soon banner at the bottom */}
-          <Card className="overflow-hidden rounded-[8px] bg-gradient-to-r from-teal-800 via-teal-700 to-teal-900 text-white p-5 flex flex-col gap-2 relative mt-2 shadow-md hover:shadow-lg transition-all min-h-[140px] select-none">
+          <Card className="overflow-hidden rounded-[8px] bg-gradient-to-r from-teal-800 via-teal-700 to-teal-900 text-white p-5 flex flex-col gap-2 relative mt-2 hover:opacity-95 transition-all min-h-[140px] select-none">
             <div className="absolute top-0 right-0 p-3 opacity-15">
               <Sparkles size={100} />
             </div>

@@ -8,6 +8,7 @@ import { StandardPage, Text, toast } from 'ejsc-ma-component';
 import { apisAsync } from 'ejsc-ma-api';
 import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'ejsc-ma-router';
+import { Header } from '../components/Header';
 
 const LayoutTestScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -32,17 +33,23 @@ const LayoutTestScreen: React.FC = () => {
     const t = setTimeout(read, 800);
     return () => clearTimeout(t);
   }, []);
-
+  
   return (
     <StandardPage hideAppBar contentClassName="bg-[#F8FAFC]">
-      <div
-        className="p-6 flex flex-col gap-6 pb-20"
-        style={{ paddingTop: 'calc(var(--ejsc-safe-top) + 16px)' }}
-      >
-        <div className="flex flex-col gap-1">
-          <Text variant="h2" weight="bold" className="text-slate-800">Kiểm tra Header native</Text>
-          <Text variant="sub" className="text-slate-500">Thử nghiệm AppBar, màu sắc và thanh trạng thái</Text>
+      <div className="relative min-h-screen flex flex-col">
+        {/* Landscape Banner Background (Immersive Style) */}
+        <div className="absolute top-0 left-0 right-0 h-[260px] z-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1064&auto=format&fit=crop"
+            className="w-full h-full object-cover"
+            alt="Header Background"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-[#F8FAFC]" />
         </div>
+
+        <Header title="Kiểm tra Header native" subtitle="Thử nghiệm AppBar, màu sắc và thanh trạng thái" transparent />
+        
+        <div className="relative z-10 p-6 flex flex-col gap-6 pb-20">
 
         {/* ─── MỤC 1: HIỂN THỊ APPBAR ─── */}
         <section className="flex flex-col gap-2">
