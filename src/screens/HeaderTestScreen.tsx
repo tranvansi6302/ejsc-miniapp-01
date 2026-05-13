@@ -7,6 +7,7 @@ import { StandardPage, Text } from 'ejsc-ma-component';
 import { useNavigate } from 'ejsc-ma-router';
 import { ArrowLeft } from 'lucide-react';
 import { apisAsync } from 'ejsc-ma-api';
+import { Header } from '../components/Header';
 
 const ALL_VARIABLES = [
   // === SAFE AREA ===
