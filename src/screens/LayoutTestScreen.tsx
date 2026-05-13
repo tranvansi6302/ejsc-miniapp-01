@@ -1,151 +1,265 @@
-import React from 'react';
-import { StandardPage, Text } from 'ejsc-ma-component';
+/**
+ * @file LayoutTestScreen.tsx
+ * @description Kiểm tra Header Native: AppBar, màu sắc, icon back, Status Bar.
+ * Thiết kế phẳng (flat), tinh gọn 3 cột, Sentence case.
+ */
+import React, { useEffect, useState } from 'react';
+import { StandardPage, Text, toast } from 'ejsc-ma-component';
+import { apisAsync } from 'ejsc-ma-api';
+import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'ejsc-ma-router';
 
 const LayoutTestScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [debugValues, setDebugValues] = React.useState<Record<string, string>>({});
+  const [cssVars, setCssVars] = useState({
+    safeTop: '0px', safeBottom: '0px',
+    statusBarH: '0px', titleBarH: '0px',
+    windowH: '0px',
+  });
 
-  const variables = [
-    { name: '--ejsc-device-width', desc: 'Chiều rộng thiết bị' },
-    { name: '--ejsc-device-height', desc: 'Chiều cao thiết bị' },
-    { name: '--ejsc-screen-width', desc: 'Chiều rộng màn hình' },
-    { name: '--ejsc-screen-height', desc: 'Chiều cao màn hình' },
-    { name: '--ejsc-window-width', desc: 'Chiều rộng vùng vẽ' },
-    { name: '--ejsc-window-height', desc: 'Chiều cao vùng vẽ' },
-    { name: '--ejsc-status-bar-height', desc: 'Chiều cao Status Bar' },
-    { name: '--ejsc-title-bar-height', desc: 'Chiều cao Title Bar' },
-    { name: '--ejsc-safe-top', desc: 'Safe Area Top' },
-    { name: '--ejsc-safe-bottom', desc: 'Safe Area Bottom' },
-    { name: '--ejsc-safe-left', desc: 'Safe Area Left' },
-    { name: '--ejsc-safe-right', desc: 'Safe Area Right' },
-    { name: '--ejsc-header-padding-left', desc: 'Header Padding Left' },
-    { name: '--ejsc-header-padding-right', desc: 'Header Padding Right' },
-    { name: '--safe-top', desc: 'Safe Top (Legacy)' },
-    { name: '--safe-bottom', desc: 'Safe Bottom (Legacy)' },
-    { name: '--is-real-device', desc: 'Is Real Device' },
-  ];
-
-  React.useEffect(() => {
-    // Đợi 1 chút để Native tiêm xong biến
-    const timer = setTimeout(() => {
-      const root = document.documentElement;
-      const styles = getComputedStyle(root);
-      const values: Record<string, string> = {};
-      variables.forEach(v => {
-        values[v.name] = styles.getPropertyValue(v.name).trim() || 'N/A';
+  useEffect(() => {
+    const read = () => {
+      const s = getComputedStyle(document.documentElement);
+      setCssVars({
+        safeTop: s.getPropertyValue('--ejsc-safe-top').trim() || '0px',
+        safeBottom: s.getPropertyValue('--ejsc-safe-bottom').trim() || '0px',
+        statusBarH: s.getPropertyValue('--ejsc-status-bar-height').trim() || '0px',
+        titleBarH: s.getPropertyValue('--ejsc-title-bar-height').trim() || '0px',
+        windowH: s.getPropertyValue('--ejsc-window-height').trim() || '0px',
       });
-      setDebugValues(values);
-    }, 500);
-    return () => clearTimeout(timer);
+    };
+    read();
+    const t = setTimeout(read, 800);
+    return () => clearTimeout(t);
   }, []);
 
   return (
-    <StandardPage title="Kiểm tra Layout EJSC" contentClassName="bg-slate-50">
-      <div className="p-6 flex flex-col gap-8">
-        
-        {/* Environment Status */}
-        <div className="flex items-center gap-2">
-          <Text variant="caption" weight="medium" className="text-slate-500 uppercase tracking-wider">Môi trường:</Text>
-          {debugValues['--is-real-device'] === '1' ? (
-            <div className="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full border border-emerald-200">
-              MÁY THẬT (REAL DEVICE)
-            </div>
-          ) : (
-            <div className="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full border border-amber-200">
-              GIẢ LẬP (EMULATOR)
-            </div>
-          )}
+    <StandardPage hideAppBar contentClassName="bg-[#F8FAFC]">
+      <div
+        className="p-6 flex flex-col gap-6 pb-20"
+        style={{ paddingTop: 'calc(var(--ejsc-safe-top) + 16px)' }}
+      >
+        <div className="flex flex-col gap-1">
+          <Text variant="h2" weight="bold" className="text-slate-800">Kiểm tra Header native</Text>
+          <Text variant="sub" className="text-slate-500">Thử nghiệm AppBar, màu sắc và thanh trạng thái</Text>
         </div>
-        {/* 0. Navigation Menu to Sub-tests */}
-        <section className="flex flex-col gap-4">
-          <Text weight="bold" className="text-slate-900">0. Các kịch bản test (Scenarios)</Text>
-          <div className="grid grid-cols-2 gap-3">
-             <button 
-               onClick={() => navigate('/test-immersive')}
-               className="p-4 bg-indigo-600 rounded-2xl text-white flex flex-col gap-1 active:scale-95 transition-transform"
-             >
-                <Text color="white" weight="bold">Tràn màn hình</Text>
-                <Text variant="caption" color="white" className="opacity-70 text-[9px]">Test Safe Top (No AppBar)</Text>
-             </button>
-             <button 
-               onClick={() => navigate('/test-bottom')}
-               className="p-4 bg-emerald-600 rounded-2xl text-white flex flex-col gap-1 active:scale-95 transition-transform"
-             >
-                <Text color="white" weight="bold">Nút dưới đáy</Text>
-                <Text variant="caption" color="white" className="opacity-70 text-[9px]">Test Safe Bottom</Text>
-             </button>
+
+        {/* ─── MỤC 1: HIỂN THỊ APPBAR ─── */}
+        <section className="flex flex-col gap-2">
+          <Text weight="bold" variant="base" className="text-slate-700">1. Hiển thị AppBar</Text>
+          <div className="bg-white rounded-ejsc border border-slate-100 p-4 flex flex-col gap-2">
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => apisAsync.setNavigationBar({
+                  visible: true, title: 'AppBar Native',
+                  backgroundColor: '#10B981', frontColor: '#ffffff',
+                  backIcon: 'arrow', immersive: false
+                })}
+                className="py-3 px-4 bg-emerald-500 rounded-ejsc text-[12px] font-bold text-white active:scale-95 transition-all"
+              >
+                Hiện AppBar
+              </button>
+              <button
+                onClick={() => apisAsync.setNavigationBar({ visible: false })}
+                className="py-3 px-4 bg-slate-800 rounded-ejsc text-[12px] font-bold text-white active:scale-95 transition-all"
+              >
+                Ẩn AppBar
+              </button>
+            </div>
           </div>
         </section>
 
-        {/* 1. Visual Verification Blocks */}
-        <section className="flex flex-col gap-4">
-          <Text weight="bold" className="text-slate-900">1. Kiểm tra trực quan (Visual Test)</Text>
-          
-          {/* Top Test */}
-          <div 
-            className="bg-red-100 border-2 border-red-400 rounded-lg p-4 text-center"
-            style={{ marginTop: 'var(--ejsc-safe-top)' }}
-          >
-            <Text weight="semibold" className="text-red-700">Khối này dính sát Safe Top</Text>
-            <Text variant="caption" className="text-red-500">(Dùng margin-top: var(--ejsc-safe-top))</Text>
-          </div>
-
-          {/* Header Padding Test */}
-          <div className="relative bg-blue-50 border border-blue-200 rounded-lg p-4 h-24 flex items-center justify-between overflow-hidden">
-             <div 
-               className="bg-blue-500 h-full absolute left-0 top-0 opacity-20"
-               style={{ width: 'var(--ejsc-header-padding-left)' }}
-             />
-             <div 
-               className="bg-blue-500 h-full absolute right-0 top-0 opacity-20"
-               style={{ width: 'var(--ejsc-header-padding-right)' }}
-             />
-             <Text weight="medium" className="text-blue-800 mx-auto text-center z-10 text-[11px]">
-               Vùng mờ xanh là khoảng chừa cho nút hệ thống<br/>
-               (L: {debugValues['--ejsc-header-padding-left']} | R: {debugValues['--ejsc-header-padding-right']})
-             </Text>
+        {/* ─── MỤC 2: MÀU NỀN VÀ TIÊU ĐỀ ─── */}
+        <section className="flex flex-col gap-2">
+          <Text weight="bold" variant="base" className="text-slate-700">2. Màu nền và tiêu đề</Text>
+          <div className="bg-white rounded-ejsc border border-slate-100 p-4 flex flex-col gap-2">
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { label: 'Trắng', bg: '#FFFFFF', front: '#000000', title: 'Nền trắng' },
+                { label: 'Đen', bg: '#111827', front: '#ffffff', title: 'Nền đen' },
+                { label: 'Indigo', bg: '#4F46E5', front: '#ffffff', title: 'Nền Indigo' },
+              ].map(item => (
+                <button
+                  key={item.label}
+                  onClick={() => apisAsync.setNavigationBar({
+                    visible: true,
+                    title: item.title,
+                    backgroundColor: item.bg,
+                    frontColor: item.front,
+                  })}
+                  className="py-3 rounded-ejsc text-[11px] font-bold active:scale-95 transition-all border"
+                  style={{ background: item.bg, color: item.front, borderColor: item.bg === '#FFFFFF' ? '#e2e8f0' : item.bg }}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* 2. Variable Value Table */}
-        <section className="flex flex-col gap-4">
-          <Text weight="bold" className="text-slate-900">2. Danh sách giá trị biến</Text>
-          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-slate-50 border-b border-slate-200">
-                  <th className="px-3 py-3"><Text variant="caption" weight="bold">Tên biến</Text></th>
-                  <th className="px-3 py-3"><Text variant="caption" weight="bold">Giá trị</Text></th>
-                </tr>
-              </thead>
-              <tbody>
-                {variables.map((v) => (
-                  <tr key={v.name} className="border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors">
-                    <td className="px-3 py-3">
-                      <Text variant="caption" weight="bold" className="text-slate-700 block">{v.desc}</Text>
-                      <code className="text-[9px] text-slate-400">{v.name}</code>
-                    </td>
-                    <td className="px-3 py-3">
-                      <div className="bg-emerald-50 px-2 py-1 rounded text-[11px] font-bold text-emerald-700 inline-block">
-                         {debugValues[v.name] || 'Đang lấy...'}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* ─── MỤC 3: ICON BACK ─── */}
+        <section className="flex flex-col gap-2">
+          <Text weight="bold" variant="base" className="text-slate-700">3. Icon back</Text>
+          <div className="bg-white rounded-ejsc border border-slate-100 p-4 flex flex-col gap-2">
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                onClick={() => { apisAsync.setNavigationBar({ visible: true, backIcon: 'arrow', title: 'Back: Arrow' }); toast.success('Icon: ← Arrow'); }}
+                className="py-3 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-700 active:scale-95 transition-all"
+              >
+                ← Arrow
+              </button>
+              <button
+                onClick={() => { apisAsync.setNavigationBar({ visible: true, backIcon: 'close', title: 'Back: Close' }); toast.success('Icon: ✕ Close'); }}
+                className="py-3 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-700 active:scale-95 transition-all"
+              >
+                ✕ Close
+              </button>
+              <button
+                onClick={() => { apisAsync.setNavigationBar({ visible: true, backIcon: 'none', title: 'Back: None' }); toast.success('Icon: (ẩn)'); }}
+                className="py-3 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-700 active:scale-95 transition-all"
+              >
+                Ẩn icon
+              </button>
+            </div>
           </div>
         </section>
 
-        {/* Bottom Test */}
-        <div 
-          className="bg-emerald-100 border-2 border-emerald-400 rounded-lg p-6 text-center mt-10"
-          style={{ marginBottom: 'var(--ejsc-safe-bottom)' }}
-        >
-          <Text weight="semibold" className="text-emerald-700">Khối này dính sát Safe Bottom</Text>
-          <Text variant="caption" className="text-emerald-500">(Dùng margin-bottom: var(--ejsc-safe-bottom))</Text>
-        </div>
+        {/* ─── MỤC 4: MÀU SẮC PIN, SÓNG, THÔNG BÁO ─── */}
+        <section className="flex flex-col gap-2">
+          <Text weight="bold" variant="base" className="text-slate-700">4. Màu sắc pin, sóng, thông báo</Text>
+          <div className="bg-white rounded-ejsc border border-slate-100 p-4 flex flex-col gap-3">
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => {
+                  (apisAsync as any).setNavigationBar({ statusBarStyle: 'dark', frontColor: '#000000' });
+                  toast.success('Icon: Đen');
+                }}
+                className="py-3.5 px-4 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-600 flex items-center justify-center gap-2 active:scale-95"
+              >
+                Icon đen
+              </button>
+              <button
+                onClick={() => {
+                  (apisAsync as any).setNavigationBar({ statusBarStyle: 'light', frontColor: '#ffffff' });
+                  toast.success('Icon: Trắng');
+                }}
+                className="py-3.5 px-4 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-600 flex items-center justify-center gap-2 active:scale-95"
+              >
+                Icon trắng
+              </button>
+            </div>
+
+
+          </div>
+        </section>
+
+        {/* ─── MỤC 5: BG TRÀN VIỀN ─── */}
+        <section className="flex flex-col gap-2">
+          <Text weight="bold" variant="base" className="text-slate-700">5. BG tràn viền và Pull to Refresh</Text>
+          <div className="bg-white rounded-ejsc border border-slate-100 p-4 flex flex-col gap-4">
+            <button
+              onClick={() => navigate('/test-immersive')}
+              className="w-full py-4.5 bg-slate-900 rounded-ejsc text-white font-bold text-[13px] flex items-center justify-center gap-3 active:scale-[0.98] transition-all"
+            >
+              Vào trang test BG tràn viền <ChevronRight size={18} />
+            </button>
+            <Text variant="sub" className="text-slate-500 text-center px-4">
+              Kiểm tra hiển thị ảnh nền và hiệu ứng làm mới trang
+            </Text>
+          </div>
+        </section>
+
+        {/* ─── DEMO TRỰC QUAN LAYOUT ─── */}
+        <section className="flex flex-col gap-3 pb-10">
+          <Text weight="bold" variant="base" className="text-slate-700">Demo: Layout thực tế với Safe Area</Text>
+
+          {/* Phone mockup */}
+          <div className="relative mx-auto w-[240px] h-[440px] rounded-[32px] border-[6px] border-slate-800 bg-slate-100 overflow-hidden">
+            {/* Notch */}
+            <div className="absolute top-0 left-0 right-0 flex justify-center pt-1 z-10">
+              <div className="w-16 h-4 bg-slate-900 rounded-full" />
+            </div>
+
+            {/* STATUS BAR zone */}
+            <div
+              className="absolute top-0 left-0 right-0 bg-emerald-500/80 flex items-end justify-center"
+              style={{ height: `calc(${cssVars.statusBarH} * 0.5 + 16px)` }}
+            >
+              <span className="text-white text-[8px] font-bold pb-0.5 opacity-90">
+                status bar · {cssVars.statusBarH}
+              </span>
+            </div>
+
+            {/* TITLE BAR zone */}
+            <div
+              className="absolute left-0 right-0 bg-indigo-500/80 flex items-center justify-center"
+              style={{
+                top: `calc(${cssVars.statusBarH} * 0.5 + 16px)`,
+                height: `calc(${cssVars.titleBarH} * 0.5 + 18px)`,
+              }}
+            >
+              <span className="text-white text-[8px] font-bold opacity-90">
+                title bar · {cssVars.titleBarH}
+              </span>
+            </div>
+
+            {/* CONTENT zone */}
+            <div
+              className="absolute left-0 right-0 bg-white flex items-center justify-center"
+              style={{
+                top: `calc(${cssVars.statusBarH} * 0.5 + ${cssVars.titleBarH} * 0.5 + 34px)`,
+                bottom: `calc(${cssVars.safeBottom} * 0.5 + 12px)`,
+              }}
+            >
+              <div className="flex flex-col items-center gap-1 px-3 text-center">
+                <div className="w-full h-2 bg-slate-200 rounded-full" />
+                <div className="w-3/4 h-2 bg-slate-100 rounded-full" />
+                <div className="w-full h-2 bg-slate-200 rounded-full mt-2" />
+                <div className="w-2/3 h-2 bg-slate-100 rounded-full" />
+                <span className="text-[7px] text-slate-400 mt-2 font-bold uppercase tracking-widest opacity-30 block">Nội dung</span>
+              </div>
+            </div>
+
+            {/* SAFE BOTTOM zone */}
+            <div
+              className="absolute bottom-0 left-0 right-0 bg-amber-400/80 flex items-start justify-center"
+              style={{ height: `calc(${cssVars.safeBottom} * 0.5 + 12px)` }}
+            >
+              <span className="text-white text-[8px] font-bold pt-0.5 opacity-90">
+                safe bottom · {cssVars.safeBottom}
+              </span>
+            </div>
+          </div>
+
+          {/* Chú thích màu */}
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { color: 'bg-emerald-500', label: 'Status bar', val: cssVars.statusBarH },
+              { color: 'bg-indigo-500', label: 'Title bar', val: cssVars.titleBarH },
+              { color: 'bg-white border border-slate-200', label: 'Nội dung', val: '' },
+              { color: 'bg-amber-400', label: 'Safe bottom', val: cssVars.safeBottom },
+            ].map(item => (
+              <div key={item.label} className="flex items-center gap-2 bg-white rounded-ejsc border border-slate-100 px-3 py-2">
+                <div className={`w-3 h-3 rounded-sm shrink-0 ${item.color}`} />
+                <div>
+                  <Text variant="tiny" weight="bold" className="text-slate-700">{item.label}</Text>
+                  {item.val && <div className="text-[9px] text-slate-400 font-mono">{item.val}</div>}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Safe Top hiển thị riêng */}
+          <div className="bg-white rounded-ejsc border border-slate-100 px-4 py-3 flex items-center justify-between">
+            <div>
+              <Text variant="caption" weight="bold" className="text-slate-700">Safe area top (tổng)</Text>
+              <code className="text-[9px] text-slate-400">--ejsc-safe-top</code>
+            </div>
+            <span className="text-[12px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded font-mono">
+              {cssVars.safeTop}
+            </span>
+          </div>
+        </section>
       </div>
     </StandardPage>
   );

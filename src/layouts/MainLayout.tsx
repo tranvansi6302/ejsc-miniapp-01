@@ -49,7 +49,15 @@ interface IBottomBarProps {
 const MemoizedBottomBar = React.memo(({ show, items, currentPath }: IBottomBarProps) => {
   if (!show) return null;
   return (
-    <BottomBar>
+    <BottomBar 
+      style={{ 
+        paddingBottom: 'var(--ejsc-safe-bottom)',
+        paddingTop: '10px', // Tạo khoảng cách phía trên cho cân đối
+        height: 'auto',     // Cho phép thanh menu giãn theo nội dung
+        display: 'flex',
+        alignItems: 'center'
+      }}
+    >
       {items.map((tab) => (
         <BottomBar.Item
           key={tab.path}

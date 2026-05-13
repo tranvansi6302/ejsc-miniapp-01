@@ -12,6 +12,7 @@ import SwitchAppScreen from '../screens/SwitchAppScreen';
 import AccountScreen from '../screens/AccountScreen';
 import LoginScreen from '../screens/LoginScreen'; // giữ nguyên file
 import LayoutTestScreen from '../screens/LayoutTestScreen';
+import HeaderTestScreen from '../screens/HeaderTestScreen';
 import ImmersiveTestScreen from '../screens/ImmersiveTestScreen';
 import BottomActionTestScreen from '../screens/BottomActionTestScreen';
 import React from 'react';
@@ -118,6 +119,14 @@ export const getRouterConfig = (): IRouterConfig => ({
       animation: 'slide_left',
       appBar: { type: 'native', title: 'Test Bottom Area' },
       showAppBar: true,
+      showBottomNav: false
+    },
+    {
+      pathname: '/test-header',
+      Component: HeaderTestScreen,
+      animation: 'slide_left',
+      appBar: { type: 'custom' },
+      showAppBar: false,
       showBottomNav: false
     },
   ],

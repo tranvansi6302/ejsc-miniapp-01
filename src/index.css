@@ -146,7 +146,7 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain;
-    scroll-padding-bottom: calc(12rem + env(safe-area-inset-bottom, 0px));
+    scroll-padding-bottom: calc(12rem + var(--ejsc-safe-bottom, 0px));
     contain: paint;
   }
 
