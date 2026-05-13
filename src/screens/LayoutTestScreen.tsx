@@ -268,7 +268,8 @@ const LayoutTestScreen: React.FC = () => {
           </div>
         </section>
       </div>
-    </StandardPage>
+    </div>
+  </StandardPage>
   );
 };
 

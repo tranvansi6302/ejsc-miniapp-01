@@ -115,7 +115,8 @@ const HeaderTestScreen: React.FC = () => {
           </div>
         ))}
       </div>
-    </StandardPage>
+    </div>
+  </StandardPage>
   );
 };
 
