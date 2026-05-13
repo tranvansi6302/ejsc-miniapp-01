@@ -145,7 +145,7 @@ const LayoutTestScreen: React.FC = () => {
                 }}
                 className="py-3.5 px-4 bg-slate-50 border border-slate-100 rounded-ejsc text-[11px] font-bold text-slate-600 flex items-center justify-center gap-2 active:scale-95"
               >
-                Icon trắng (Đỏ)
+                Icon trắng, đỏ
               </button>
             </div>
 
