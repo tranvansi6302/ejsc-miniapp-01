@@ -16,7 +16,7 @@ importers:
         version: 1.0.43(@types/react@19.2.14)(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react-i18next@17.0.7(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       ejsc-ma-router:
         specifier: latest
-        version: 1.0.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+        version: 1.0.7(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       framer-motion:
         specifier: ^12.38.0
         version: 12.38.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -1727,8 +1727,8 @@ packages:
       react-dom: '>=19.0.0'
       react-i18next: '>=16.0.0'
 
-  ejsc-ma-router@1.0.5:
-    resolution: {integrity: sha512-hYbICC+KdW6cROn3XON4r5n7hJjvROUW3sugjjKABq+hpJABIrNwHNgebAG3kuaavmGWioL/stumCuTWaqPpWg==}
+  ejsc-ma-router@1.0.7:
+    resolution: {integrity: sha512-aBVhVWFnZcQaoQgjFZ1HYicNELJPZCaDR7vUfEdx3C11XWuMRaow7oKVSVqCePG9oudqAj0RAjQnmxh9sISNzQ==}
     engines: {node: '>=18'}
     peerDependencies:
       react: '>=19.0.0'
@@ -4471,7 +4471,7 @@ snapshots:
       classnames: 2.5.1
       clsx: 2.1.1
       ejsc-ma-api: 1.0.9
-      ejsc-ma-router: 1.0.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      ejsc-ma-router: 1.0.7(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       framer-motion: 12.38.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       i18next: 26.0.10(typescript@6.0.3)
       lucide-react: 0.473.0(react@19.2.6)
@@ -4487,7 +4487,7 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  ejsc-ma-router@1.0.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
+  ejsc-ma-router@1.0.7(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
     dependencies:
       classnames: 2.5.1
       framer-motion: 12.38.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
