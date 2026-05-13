@@ -4,10 +4,12 @@
  */
 import React, { useState, useEffect } from 'react';
 import { StandardPage, Text, Card, toast } from 'ejsc-ma-component';
-import { ExternalLink, CheckCircle2, XCircle, User } from 'lucide-react';
+import { ExternalLink, CheckCircle2, XCircle, User, Layout } from 'lucide-react';
 import { apisAsync } from 'ejsc-ma-api';
+import { useNavigate } from 'ejsc-ma-router';
 
 const DeepLinkHomeScreen: React.FC = () => {
+  const navigate = useNavigate();
   const [lastResult, setLastResult] = useState<{ success: boolean; label: string } | null>(null);
   const [userInfo, setUserInfo] = useState<any>(null);
 
@@ -114,6 +116,24 @@ const DeepLinkHomeScreen: React.FC = () => {
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Framework Tools Section */}
+        <div className="rounded-3xl border-none shadow-none bg-white flex flex-col gap-5">
+          <Text variant="base" weight="bold" className="text-slate-700">Công cụ Framework (EJSC)</Text>
+          <button
+            onClick={() => navigate('/layout-test')}
+            className="w-full flex items-center gap-4 p-4 rounded-2xl border border-slate-100 hover:bg-slate-50 transition-all"
+          >
+            <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center text-white">
+              <Layout size={24} />
+            </div>
+            <div className="flex-1 text-left">
+              <Text variant="base" weight="bold">Kiểm tra Layout EJSC</Text>
+              <Text variant="sub" className="text-slate-500 line-clamp-1 text-[11px]">Test 17 biến giao diện chuẩn EJSC từ Native</Text>
+            </div>
+            <ExternalLink size={16} className="text-slate-400" />
+          </button>
         </div>
 
         {lastResult && (

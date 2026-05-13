@@ -57,6 +57,10 @@
   --ejsc-sys-font-base: 1.35rem;
   --ejsc-sys-font-sub: 1.25rem;
   --ejsc-sys-font-caption: 1.15rem;
+
+  /* 6. EJSC Layout Variables (Injected by Native) */
+  --safe-top: var(--ejsc-safe-top, 0px);
+  --safe-bottom: var(--ejsc-safe-bottom, 0px);
 }
 
 @theme {

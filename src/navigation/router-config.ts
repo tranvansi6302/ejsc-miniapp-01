@@ -11,6 +11,9 @@ import ApiScreen from '../screens/ApiScreen';
 import SwitchAppScreen from '../screens/SwitchAppScreen';
 import AccountScreen from '../screens/AccountScreen';
 import LoginScreen from '../screens/LoginScreen'; // giữ nguyên file
+import LayoutTestScreen from '../screens/LayoutTestScreen';
+import ImmersiveTestScreen from '../screens/ImmersiveTestScreen';
+import BottomActionTestScreen from '../screens/BottomActionTestScreen';
 import React from 'react';
 
 export type AnimationType = 'none' | 'slide_left' | 'slide_up' | 'fade_in';
@@ -92,6 +95,29 @@ export const getRouterConfig = (): IRouterConfig => ({
       animation: 'slide_left',
       appBar: { type: 'custom' },
       showAppBar: false,
+      showBottomNav: false
+    },
+    {
+      pathname: '/layout-test',
+      Component: LayoutTestScreen,
+      animation: 'slide_left',
+      appBar: { type: 'custom' },
+      showAppBar: false
+    },
+    {
+      pathname: '/test-immersive',
+      Component: ImmersiveTestScreen,
+      animation: 'slide_up',
+      appBar: { type: 'custom' },
+      showAppBar: false,
+      showBottomNav: false
+    },
+    {
+      pathname: '/test-bottom',
+      Component: BottomActionTestScreen,
+      animation: 'slide_left',
+      appBar: { type: 'native', title: 'Test Bottom Area' },
+      showAppBar: true,
       showBottomNav: false
     },
   ],
