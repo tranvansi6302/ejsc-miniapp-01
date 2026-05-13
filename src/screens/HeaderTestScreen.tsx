@@ -3,7 +3,7 @@
  * @description Hiển thị toàn bộ biến CSS --ejsc-* được inject từ Native.
  */
 import React, { useEffect, useState } from 'react';
-import { StandardPage, Text } from 'ejsc-ma-component';
+import { Text } from 'ejsc-ma-component';
 import { useNavigate } from 'ejsc-ma-router';
 import { ArrowLeft } from 'lucide-react';
 import { apisAsync } from 'ejsc-ma-api';
@@ -63,9 +63,10 @@ const HeaderTestScreen: React.FC = () => {
   const isRealDevice = values['--is-real-device'] === '1';
 
   return (
-    <StandardPage title="Biến CSS Safe Area" contentClassName="bg-[#F8FAFC]">
+    <div className="h-full bg-[#F8FAFC] overflow-y-auto">
       <div
         className="px-6 flex flex-col gap-6 pb-40"
+        style={{ paddingTop: 'var(--ejsc-safe-top)' }}
       >
 
         {/* Environment Badge */}
@@ -204,7 +205,7 @@ const HeaderTestScreen: React.FC = () => {
           </div>
         </section>
       </div>
-    </StandardPage>
+    </div>
   );
 };
 

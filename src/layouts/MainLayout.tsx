@@ -103,8 +103,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     if (isActive && currentPage) {
       // Thiết lập thanh điều hướng Native Bridge
       const navOptions: IEjscSetNavigationBarOptions = {
-        visible: false, // Luôn ẩn Native Bar để dùng Web Custom Bar cho mượt
-        immersive: true,
+        visible: currentPage.appBar.type === 'native', 
+        immersive: currentPage.appBar.type !== 'native',
         title: currentPage.appBar.type === 'native' ? currentPage.appBar.title : '',
         backIcon: currentPage.appBar.type === 'native' ? (currentPage.appBar.backIcon || (pageLocation.pathname === '/' ? 'none' : 'arrow')) : 'none'
       };

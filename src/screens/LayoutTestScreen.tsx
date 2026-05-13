@@ -4,7 +4,7 @@
  * Thiết kế phẳng (flat), tinh gọn 3 cột, Sentence case.
  */
 import React, { useEffect, useState } from 'react';
-import { StandardPage, Text, toast } from 'ejsc-ma-component';
+import { Text, toast } from 'ejsc-ma-component';
 import { apisAsync } from 'ejsc-ma-api';
 import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'ejsc-ma-router';
@@ -51,9 +51,10 @@ const LayoutTestScreen: React.FC = () => {
   }, []);
 
   return (
-    <StandardPage contentClassName="bg-[#F8FAFC]">
+    <div className="h-full bg-[#F8FAFC] overflow-y-auto">
       <div 
         className="p-6 flex flex-col gap-6 pb-20"
+        style={{ paddingTop: 'var(--ejsc-safe-top)' }}
       >
         {/* ─── MỤC 2: MÀU NỀN VÀ TIÊU ĐỀ ─── */}
         <section className="flex flex-col gap-2">
@@ -159,7 +160,7 @@ const LayoutTestScreen: React.FC = () => {
 
 
       </div>
-    </StandardPage>
+    </div>
   );
 };
 

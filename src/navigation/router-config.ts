@@ -102,7 +102,7 @@ export const getRouterConfig = (): IRouterConfig => ({
       pathname: '/layout-test',
       Component: LayoutTestScreen,
       animation: 'slide_left',
-      appBar: { type: 'custom' },
+      appBar: { type: 'native', title: 'Kiểm tra Layout' },
       showAppBar: false
     },
     {
@@ -125,7 +125,7 @@ export const getRouterConfig = (): IRouterConfig => ({
       pathname: '/test-header',
       Component: HeaderTestScreen,
       animation: 'slide_left',
-      appBar: { type: 'custom' },
+      appBar: { type: 'native', title: 'Biến CSS Safe Area' },
       showAppBar: false,
       showBottomNav: false
     },
