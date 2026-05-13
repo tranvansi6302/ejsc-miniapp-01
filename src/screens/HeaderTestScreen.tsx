@@ -63,10 +63,9 @@ const HeaderTestScreen: React.FC = () => {
   const isRealDevice = values['--is-real-device'] === '1';
 
   return (
-    <StandardPage hideAppBar contentClassName="bg-[#F8FAFC]">
+    <StandardPage title="Biến CSS Safe Area" contentClassName="bg-[#F8FAFC]">
       <div 
         className="px-6 flex flex-col gap-6 pb-40"
-        style={{ paddingTop: 'var(--ejsc-safe-top)' }}
       >
 
         {/* Environment Badge */}

@@ -45,10 +45,9 @@ const LayoutTestScreen: React.FC = () => {
   }, []);
 
   return (
-    <StandardPage hideAppBar contentClassName="bg-[#F8FAFC]">
+    <StandardPage title="Kiểm tra Layout" contentClassName="bg-[#F8FAFC]">
       <div 
         className="p-6 flex flex-col gap-6 pb-20"
-        style={{ paddingTop: 'var(--ejsc-safe-top)' }}
       >
         {/* ─── MỤC 2: MÀU NỀN VÀ TIÊU ĐỀ ─── */}
         <section className="flex flex-col gap-2">
