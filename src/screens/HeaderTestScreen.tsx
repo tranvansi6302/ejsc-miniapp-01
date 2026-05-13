@@ -37,10 +37,10 @@ const HeaderTestScreen: React.FC = () => {
 
   useEffect(() => {
     // Đặt mặc định hiện AppBar Native và icon pin, sóng màu đen (dark)
-    apisAsync.setNavigationBar({ 
+    apisAsync.setNavigationBar({
       visible: true,
       title: 'Biến CSS Safe Area',
-      statusBarStyle: 'dark', 
+      statusBarStyle: 'dark',
       frontColor: '#000000',
       backgroundColor: '#FFFFFF',
       backIcon: 'arrow'
@@ -64,12 +64,12 @@ const HeaderTestScreen: React.FC = () => {
 
   return (
     <StandardPage title="Biến CSS Safe Area" contentClassName="bg-[#F8FAFC]">
-      <div 
+      <div
         className="px-6 flex flex-col gap-6 pb-40"
       >
 
         {/* Environment Badge */}
-        <div className={`flex items-center gap-3 px-4 py-3.5 rounded-ejsc border ${isRealDevice ? 'bg-emerald-50 border-emerald-100' : 'bg-amber-50 border-amber-100'}`}>
+        <div className={`flex items-center gap-3 px-4 mt-6 py-3.5 rounded-ejsc border ${isRealDevice ? 'bg-emerald-50 border-emerald-100' : 'bg-amber-50 border-amber-100'}`}>
           <div className={`w-2.5 h-2.5 rounded-full ${isRealDevice ? 'bg-emerald-500' : 'bg-amber-500'}`} />
           <Text variant="base" weight="bold" className={isRealDevice ? 'text-emerald-700' : 'text-amber-700'}>
             {isRealDevice ? 'Môi trường: Máy thật' : 'Môi trường: Giả lập'}

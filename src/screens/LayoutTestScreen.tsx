@@ -20,14 +20,17 @@ const LayoutTestScreen: React.FC = () => {
 
   useEffect(() => {
     // Mặc định hiện AppBar Native khi vào trang này để có nút Back hệ thống
-    apisAsync.setNavigationBar({
-      visible: true,
-      title: 'Kiểm tra Layout',
-      backgroundColor: '#FFFFFF',
-      frontColor: '#000000',
-      backIcon: 'arrow',
-      immersive: false
-    });
+    // Thêm delay nhỏ để tránh xung đột với quá trình mount của component
+    const timer = setTimeout(() => {
+      apisAsync.setNavigationBar({
+        visible: true,
+        title: 'Kiểm tra Layout',
+        backgroundColor: '#FFFFFF',
+        frontColor: '#000000',
+        backIcon: 'arrow',
+        immersive: false
+      });
+    }, 100);
 
     const read = () => {
       const s = getComputedStyle(document.documentElement);
@@ -41,11 +44,14 @@ const LayoutTestScreen: React.FC = () => {
     };
     read();
     const t = setTimeout(read, 800);
-    return () => clearTimeout(t);
+    return () => {
+      clearTimeout(t);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
-    <StandardPage title="Kiểm tra Layout" contentClassName="bg-[#F8FAFC]">
+    <StandardPage contentClassName="bg-[#F8FAFC]">
       <div 
         className="p-6 flex flex-col gap-6 pb-20"
       >
@@ -106,6 +112,7 @@ const LayoutTestScreen: React.FC = () => {
               <button
                 onClick={() => {
                   (apisAsync as any).setNavigationBar({
+                    visible: true,
                     statusBarStyle: 'dark',
                     frontColor: '#FFA500' // Màu cam
                   });
@@ -118,6 +125,7 @@ const LayoutTestScreen: React.FC = () => {
               <button
                 onClick={() => {
                   (apisAsync as any).setNavigationBar({
+                    visible: true,
                     statusBarStyle: 'light',
                     frontColor: '#FF0000' // Màu đỏ
                   });
