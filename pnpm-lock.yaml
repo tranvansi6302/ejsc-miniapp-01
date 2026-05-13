@@ -13,7 +13,7 @@ importers:
         version: 1.0.9
       ejsc-ma-component:
         specifier: latest
-        version: 1.0.42(@types/react@19.2.14)(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react-i18next@17.0.7(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+        version: 1.0.43(@types/react@19.2.14)(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react-i18next@17.0.7(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       ejsc-ma-router:
         specifier: latest
         version: 1.0.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
@@ -1719,8 +1719,8 @@ packages:
     resolution: {integrity: sha512-oP3fvk5vNp/s1Zu4utH6NvQjwDKe/HVMVNRG1hoJxHd7y1z1qW4R9IPLFFwe7D5FUZ7S0ipYS7+MeGT/8WRPqw==}
     hasBin: true
 
-  ejsc-ma-component@1.0.42:
-    resolution: {integrity: sha512-OA5MdENJVXeR8iedEIu5pQ7jEVKYWqEBluALBQIdpdOYbEe/YNvXJbE+tHyJSg8VRy+Hg1G4MqnpFN680/esvQ==}
+  ejsc-ma-component@1.0.43:
+    resolution: {integrity: sha512-bxRrswzBvr1nTzTOuhmvzmwuEat4RDSuG9idheo36K8hmHHq8wSM1HoEkdycRva0tJY5ZrncoDOdWQWNG61fTg==}
     peerDependencies:
       i18next: '>=24.0.0'
       react: '>=19.0.0'
@@ -4466,7 +4466,7 @@ snapshots:
       - utf-8-validate
       - yaml
 
-  ejsc-ma-component@1.0.42(@types/react@19.2.14)(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react-i18next@17.0.7(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
+  ejsc-ma-component@1.0.43(@types/react@19.2.14)(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react-i18next@17.0.7(i18next@26.0.10(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
     dependencies:
       classnames: 2.5.1
       clsx: 2.1.1
